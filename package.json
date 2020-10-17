@@ -1,0 +1,49 @@
+{
+  "name": "ts-starter",
+  "version": "0.1.0",
+  "description": "Starting point for server-side TypeScript projects",
+  "main": "dist/index.js",
+  "repository": "https://github.com/adanilev/ts-starter",
+  "author": "Alex Danilevsky",
+  "license": "MIT",
+  "engines": {
+    "node": "12.19.0"
+  },
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "commit": "cz",
+    "lint": "eslint . --ext .js,.ts",
+    "start": "node -r dotenv/config dist/index",
+    "start:dev": "npm run build && node -r dotenv/config --inspect dist/index",
+    "test": "jest --no-cache --coverage=true",
+    "test:dev": "jest",
+    "test:integration": "TEST_TYPE=integration node -r dotenv/config node_modules/.bin/jest --silent",
+    "test:watch": "npm run test:dev -- --watch"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "commitizen": "^4.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "jest": "^26.5.3",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "npm run lint"
+    }
+  }
+}
